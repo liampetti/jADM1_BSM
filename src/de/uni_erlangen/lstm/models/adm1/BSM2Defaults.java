@@ -20,7 +20,7 @@ public class BSM2Defaults {
 	private double S_su, S_aa, S_fa, S_va, S_bu, S_pro, S_ac, S_h2, S_ch4, S_IC, S_IN, S_I;
 	private double X_xc, X_ch, X_pr, X_li, X_su, X_aa, X_fa, X_c4, X_pro, X_ac, X_h2, X_I;
 	private double S_cat, S_an, S_hva, S_hbu, S_hpro, S_hac, S_hco3, S_nh3, S_gas_h2, S_gas_ch4, S_gas_co2;
-	private double Q_D, T_D, gas_ch4, gas_vol, ph, temp1, temp2;
+	private double Q_D, T_D, gas_ch4, gas_vol, ph, S_co2, S_nh4;
 	
 	public double[] DigesterInit() {
 		/*
@@ -69,13 +69,13 @@ public class BSM2Defaults {
 		gas_ch4 = 0.0; // 37. methane volume (m3/d)
 		gas_vol = 0.0; // 38. gas volume (m3/d)
 		ph = 0.0; // 39. pH
-		temp1 = 0.0; //40. Optional
-		temp2 = 0.0; // 41. Optional
+		S_co2 = 0.0; // 40. carbon dioxide gas (kg COD/m3)[g COD/L]
+		S_nh4 = 0.0; // 41. ammonium (kmole N/m3)
 		
 		return new double[] { S_su, S_aa, S_fa, S_va, S_bu, S_pro, S_ac, S_h2, S_ch4,
 				S_IC, S_IN, S_I, X_xc, X_ch, X_pr, X_li, X_su, X_aa, X_fa, X_c4, X_pro, X_ac,
 				X_h2, X_I, S_cat, S_an, S_hva, S_hbu, S_hpro, S_hac, S_hco3, S_nh3, S_gas_h2, S_gas_ch4,
-				S_gas_co2, Q_D, T_D, gas_ch4, gas_vol, ph, temp1, temp2 };
+				S_gas_co2, Q_D, T_D, gas_ch4, gas_vol, ph, S_co2, S_nh4 };
 	}
 	
 	public double[] Influent() {
@@ -107,7 +107,7 @@ public class BSM2Defaults {
 		X_pro = 0.01; // 20. 	(21) propionate degraders (kg COD/m3)[g COD/L]
 		X_ac = 0.01; // 21. 	(22) acetate degraders (kg COD/m3)[g COD/L]
 		X_h2 =  0.01; // 22. 	(23) hydrogen degraders (kg COD/m3)[g COD/L]
-		X_I =  25.0;; // 23. 	(24) particulate inerts (kg COD/m3)[g COD/L]
+		X_I =  25.0; // 23. 	(24) particulate inerts (kg COD/m3)[g COD/L]
 		// <---- Particulates
 		S_cat =  0.04; // 24. cations (metallic ions, strong base) (kmole/m3)
 		S_an =  0.02; // 25. anions (metallic ions, strong acid) (kmole/m3)
@@ -127,13 +127,13 @@ public class BSM2Defaults {
 		gas_ch4 = 0.0; // 37. Optional
 		gas_vol = 0.0; // 38. gas volume (m3/d)
 		ph = 0.0; // 39. pH
-		temp1 = 0.0; // 40. Optional
-		temp2 = 0.0; // 41. Optional
+		S_co2 = 0.0; // 40. Optional
+		S_nh4 = 0.0; // 41. Optional
 		
 		return new double[] { S_su, S_aa, S_fa, S_va, S_bu, S_pro, S_ac, S_h2, S_ch4,
 				S_IC, S_IN, S_I, X_xc, X_ch, X_pr, X_li, X_su, X_aa, X_fa, X_c4, X_pro, X_ac,
 				X_h2, X_I, S_cat, S_an, S_hva, S_hbu, S_hpro, S_hac, S_hco3, S_nh3, S_gas_h2, S_gas_ch4,
-				S_gas_co2, Q_D, T_D, gas_ch4, gas_vol, ph, temp1, temp2 };
+				S_gas_co2, Q_D, T_D, gas_ch4, gas_vol, ph, S_co2, S_nh4 };
 	}
 
 }

@@ -133,9 +133,9 @@ CSV files contain the variable values in a ';' separated string. The influent fi
 
 >39) pH
 
->40) optional
+>40) carbon dioxide gas (kg COD/m3)[g COD/L]
 
->41) optional
+>41) ammonium (kmole N/m3)
 
 
 #Dependencies

@@ -189,7 +189,7 @@ public class DigesterParameters {
 	public void writeParameters(String filename) {
 		double[] p = getParameters();
 		CSVWriter writer = new CSVWriter();
-		writer.WriteArray(filename, p);
+		writer.WriteArray(filename, p, false);
 	}
 	
 	/**

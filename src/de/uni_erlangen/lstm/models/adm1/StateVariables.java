@@ -47,7 +47,7 @@ public class StateVariables {
 	private double S_su, S_aa, S_fa, S_va, S_bu, S_pro, S_ac, S_h2, S_ch4, S_IC, S_IN, S_I = 0.0;
 	private double X_xc, X_ch, X_pr, X_li, X_su, X_aa, X_fa, X_c4, X_pro, X_ac, X_h2, X_I = 0.0;
 	private double S_cat, S_an, S_hva, S_hbu, S_hpro, S_hac, S_hco3, S_nh3, S_gas_h2, S_gas_ch4, S_gas_co2 = 0.0;
-	private double Q_D, T_D, gas_ch4, gas_vol, ph, temp1, temp2 = 0.0;
+	private double Q_D, T_D, gas_ch4, gas_vol, ph, S_co2, S_nh4 = 0.0;
 	
 	/**
 	 * Read the outputs from a given CSV file
@@ -72,7 +72,7 @@ public class StateVariables {
 	public void writeVar(String filename) {
 		double[] x = getVar();
 		CSVWriter writer = new CSVWriter();
-		writer.WriteArray(filename, x);
+		writer.WriteArray(filename, x, true);
 	}
 	
 	/**
@@ -82,7 +82,7 @@ public class StateVariables {
 		return new double[] { S_su, S_aa, S_fa, S_va, S_bu, S_pro, S_ac, S_h2, S_ch4,
 				S_IC, S_IN, S_I, X_xc, X_ch, X_pr, X_li, X_su, X_aa, X_fa, X_c4, X_pro, X_ac,
 				X_h2, X_I, S_cat, S_an, S_hva, S_hbu, S_hpro, S_hac, S_hco3, S_nh3, S_gas_h2, S_gas_ch4,
-				S_gas_co2, Q_D, T_D, gas_ch4, gas_vol, ph, temp1, temp2 };
+				S_gas_co2, Q_D, T_D, gas_ch4, gas_vol, ph, S_co2, S_nh4 };
 	}
 	
 	/**
@@ -131,8 +131,8 @@ public class StateVariables {
 			gas_ch4=0.0;
 			gas_vol=0.0;
 			ph=0.0;
-			temp1=0.0;
-			temp2=0.0;
+			S_co2=0.0;
+			S_nh4=0.0;
 		} else {
 			S_hva=x[26];
 			S_hbu=x[27];
@@ -148,8 +148,8 @@ public class StateVariables {
 			gas_ch4=x[37];
 			gas_vol=x[38];
 			ph=x[39];
-			temp1=x[40];
-			temp2=x[41];
+			S_co2=x[40];
+			S_nh4=x[41];
 		}
 	}
 	
@@ -476,19 +476,35 @@ public class StateVariables {
 		this.ph = ph;
 	}
 
-	public double getS_gas_h2s() {
-		return temp1;
+	public double getGas_ch4() {
+		return gas_ch4;
 	}
 
-	public void setS_gas_h2s(double s_gas_h2s) {
-		temp1 = s_gas_h2s;
+	public void setGas_ch4(double gas_ch4) {
+		this.gas_ch4 = gas_ch4;
 	}
 
-	public double getX_D5_D() {
-		return temp2;
+	public double getGas_vol() {
+		return gas_vol;
 	}
 
-	public void setX_D5_D(double x_D5_D) {
-		temp2 = x_D5_D;
+	public void setGas_vol(double gas_vol) {
+		this.gas_vol = gas_vol;
+	}
+
+	public double getS_co2() {
+		return S_co2;
+	}
+
+	public void setS_co2(double s_co2) {
+		S_co2 = s_co2;
+	}
+
+	public double getS_nh4() {
+		return S_nh4;
+	}
+
+	public void setS_nh4(double s_nh4) {
+		S_nh4 = s_nh4;
 	}
 }

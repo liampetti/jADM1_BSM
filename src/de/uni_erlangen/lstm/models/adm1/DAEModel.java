@@ -158,7 +158,7 @@ public class DAEModel implements FirstOrderDifferentialEquations {
 		K_a_bu = Math.pow(10,-param[4]);
 		K_a_pro = Math.pow(10,-param[5]);
 		K_a_ac = Math.pow(10,-param[6]);
-		
+
 		if (fix_pH >= 0) {
 			// S_H_ion based on set pH
 			shDAE = false;
@@ -276,63 +276,56 @@ public class DAEModel implements FirstOrderDifferentialEquations {
 		reac23 = param[90]*proc12-proc19;
 		// reac24 = f_xI_xc*proc1;
 		reac24 = param[65]*proc1;
-		
+
 		q_gas = param[97]*(P_gas-P_atm);
 		if (q_gas < 0)
 		   q_gas = 0.0;
 			   
 		// DE's -> Soluble matter
 		// dSsu/dt = Qad/Vad,liq(Ssu,i-Ssu)+reac1
-		dx[0] = (x[35]/param[98])*(u[0]-x[0])+reac1; // Ssu
-		dx[1] = (x[35]/param[98])*(u[1]-x[1])+reac2; // Saa
-		dx[2] = (x[35]/param[98])*(u[2]-x[2])+reac3; // Sfa
-		dx[3] = (x[35]/param[98])*(u[3]-x[3])+reac4; // Sva
-		dx[4] = (x[35]/param[98])*(u[4]-x[4])+reac5; // Sbu
-		dx[5] = (x[35]/param[98])*(u[5]-x[5])+reac6; // Spro
-		dx[6] = (x[35]/param[98])*(u[6]-x[6])+reac7; // Sac
+		dx[0] = (xtemp[35]/param[98])*(u[0]-xtemp[0])+reac1; // Ssu
+		dx[1] = (xtemp[35]/param[98])*(u[1]-xtemp[1])+reac2; // Saa
+		dx[2] = (xtemp[35]/param[98])*(u[2]-xtemp[2])+reac3; // Sfa
+		dx[3] = (xtemp[35]/param[98])*(u[3]-xtemp[3])+reac4; // Sva
+		dx[4] = (xtemp[35]/param[98])*(u[4]-xtemp[4])+reac5; // Sbu
+		dx[5] = (xtemp[35]/param[98])*(u[5]-xtemp[5])+reac6; // Spro
+		dx[6] = (xtemp[35]/param[98])*(u[6]-xtemp[6])+reac7; // Sac
 
 		if (!sh2DAE) {	
-			dx[7] = (x[35]/param[98])*(u[7]-x[7])+reac8; // Sh2
+			dx[7] = (xtemp[35]/param[98])*(u[7]-xtemp[7])+reac8; // Sh2
 		} 
 				
-		dx[8] = (x[35]/param[98])*(u[8]-x[8])+reac9; // Sch4
-		dx[9] = (x[35]/param[98])*(u[9]-x[9])+reac10;    // SIC
-		dx[10] = (x[35]/param[98])*(u[10]-x[10])+reac11; // SIN
-		dx[11] = (x[35]/param[98])*(u[11]-x[11])+reac12; // SI
+		dx[8] = (xtemp[35]/param[98])*(u[8]-xtemp[8])+reac9; // Sch4
+		dx[9] = (xtemp[35]/param[98])*(u[9]-xtemp[9])+reac10;    // SIC
+		dx[10] = (xtemp[35]/param[98])*(u[10]-xtemp[10])+reac11; // SIN
+		dx[11] = (xtemp[35]/param[98])*(u[11]-xtemp[11])+reac12; // SI
 		
 		// DE's -> Particulate matter
-		dx[12] = (x[35]/param[98])*(u[12]-x[12])+reac13; // Xc
-		dx[13] = (x[35]/param[98])*(u[13]-x[13])+reac14; // Xch
-		dx[14] = (x[35]/param[98])*(u[14]-x[14])+reac15; // Xpr
-		dx[15] = (x[35]/param[98])*(u[15]-x[15])+reac16; // Xli
-		dx[16] = (x[35]/param[98])*(u[16]-x[16])+reac17; // Xsu
-		dx[17] = (x[35]/param[98])*(u[17]-x[17])+reac18; // Xaa
-		dx[18] = (x[35]/param[98])*(u[18]-x[18])+reac19; // Xfa
-		dx[19] = (x[35]/param[98])*(u[19]-x[19])+reac20; // Xc4
-		dx[20] = (x[35]/param[98])*(u[20]-x[20])+reac21; // Xpro
-		dx[21] = (x[35]/param[98])*(u[21]-x[21])+reac22; // Xac
-		dx[22] = (x[35]/param[98])*(u[22]-x[22])+reac23; // Xh2
-		dx[23] = (x[35]/param[98])*(u[23]-x[23])+reac24; // XI
+		dx[12] = (xtemp[35]/param[98])*(u[12]-xtemp[12])+reac13; // Xc
+		dx[13] = (xtemp[35]/param[98])*(u[13]-xtemp[13])+reac14; // Xch
+		dx[14] = (xtemp[35]/param[98])*(u[14]-xtemp[14])+reac15; // Xpr
+		dx[15] = (xtemp[35]/param[98])*(u[15]-xtemp[15])+reac16; // Xli
+		dx[16] = (xtemp[35]/param[98])*(u[16]-xtemp[16])+reac17; // Xsu
+		dx[17] = (xtemp[35]/param[98])*(u[17]-xtemp[17])+reac18; // Xaa
+		dx[18] = (xtemp[35]/param[98])*(u[18]-xtemp[18])+reac19; // Xfa
+		dx[19] = (xtemp[35]/param[98])*(u[19]-xtemp[19])+reac20; // Xc4
+		dx[20] = (xtemp[35]/param[98])*(u[20]-xtemp[20])+reac21; // Xpro
+		dx[21] = (xtemp[35]/param[98])*(u[21]-xtemp[21])+reac22; // Xac
+		dx[22] = (xtemp[35]/param[98])*(u[22]-xtemp[22])+reac23; // Xh2
+		dx[23] = (xtemp[35]/param[98])*(u[23]-xtemp[23])+reac24; // XI
 
-		dx[24] = (x[35]/param[98])*(u[24]-x[24]); // Scat+
-		dx[25] = (x[35]/param[98])*(u[25]-x[25]); // San-
+		dx[24] = (xtemp[35]/param[98])*(u[24]-xtemp[24]); // Scat+
+		dx[25] = (xtemp[35]/param[98])*(u[25]-xtemp[25]); // San-
 		
 		// Acid-base process rates for ODE
 		//k_A_Bva*(S_hva*(K_A_va+S_H_ion)-K_a_va*S_va)
-		if (!shDAE) {
+		if (!shDAE && fix_pH < 0) {
 			dx[26] = -(param[49]*(xtemp[26]*(K_a_va+S_H_ion)-K_a_va*xtemp[3]));  // Sva-
 			dx[27] = -(param[50]*(xtemp[27]*(K_a_bu+S_H_ion)-K_a_bu*xtemp[4]));  // Sbu-
 			dx[28] = -(param[51]*(xtemp[28]*(K_a_pro+S_H_ion)-K_a_pro*xtemp[5]));  // Spro-
 			dx[29] = -(param[52]*(xtemp[29]*(K_a_ac+S_H_ion)-K_a_ac*xtemp[6]));  // Sac-
 			dx[30] = -(param[53]*(xtemp[30]*(K_a_co2+S_H_ion)-K_a_co2*xtemp[9])); // SHCO3-
 			dx[31] = -(param[54]*(xtemp[31]*(K_a_IN+S_H_ion)-K_a_IN*xtemp[10])); // SNH3	
-		} else {
-			xtemp[26] = K_a_va*x[3]/(K_a_va+S_H_ion);
-			xtemp[27] = K_a_bu*x[4]/(K_a_bu+S_H_ion);
-			xtemp[28] = K_a_pro*x[5]/(K_a_pro+S_H_ion);
-			xtemp[29] = K_a_ac*x[6]/(K_a_ac+S_H_ion);
-			xtemp[30] = K_a_co2*x[9]/(K_a_co2+S_H_ion);
-			xtemp[31] = K_a_IN*x[10]/(K_a_IN+S_H_ion);
 		}
 
 		dx[32] = -xtemp[32]*q_gas/param[99]+procT8*param[98]/param[99]; // Sgas,h2
@@ -343,16 +336,18 @@ public class DAEModel implements FirstOrderDifferentialEquations {
 		dx[36] = 0; // Temp
 		
 		// Correction by factor of 64.0 due to COD basis of Sgas,ch4  // Methane gas (m3/d)
-		//xtemp[37] = (q_gas*xtemp[33])*R*(273.15+xtemp[36])/64.0; // Calculate methane flow from concentration in gas phase
-		xtemp[37] = q_gas*(p_gas_ch4/P_gas); // Calculate methane flow from partial pressures
+		//xtemp[37] = (q_gas*xtemp[33])*R*(273.15+xtemp[36])/64.0; // Calculate methane production from concentration in gas phase
+		xtemp[37] = q_gas*(p_gas_ch4/P_gas); // Calculate methane production from partial pressures
 			
 		xtemp[38] = q_gas;// Gas production (m3/d)
 		
 		
 		xtemp[39] = -Math.log10(S_H_ion); // pH
 		
-		xtemp[40] = 0; 
-		xtemp[41] = 0; 
+		// SCO2 = SIC - SHCO3
+		xtemp[40] = xtemp[9]-xtemp[30]; // SCO2
+		// SNH4+ = SIN - SNH3
+		xtemp[41] = xtemp[10]-xtemp[31]; // SNH4+
 	}
 	
 	public void runDAE() {			
@@ -372,15 +367,17 @@ public class DAEModel implements FirstOrderDifferentialEquations {
 		
 		// SH+ Equation (pH and ion states)
 		if (shDAE) {
-			while ( (shDelta > TOL || shDelta < -TOL) && (i <= maxSteps) ) {				
-				shDelta = xtemp[24]+xtemp[10]
-						-(K_a_IN*xtemp[10]/(K_a_IN+S_H_ion))+S_H_ion
-						-(K_a_co2*xtemp[9]/(K_a_co2+S_H_ion))
-						-(K_a_ac*xtemp[6]/(K_a_ac+S_H_ion))/64.0
-						-(K_a_pro*xtemp[5]/(K_a_pro+S_H_ion))/112.0						
-						-(K_a_bu*xtemp[4]/(K_a_bu+S_H_ion))/160.0						
-						-(K_a_va*xtemp[3]/(K_a_va+S_H_ion))/208.0						
-						-(K_w/S_H_ion)-xtemp[25];
+			while ( (shDelta > TOL || shDelta < -TOL) && (i <= maxSteps) ) {
+				xtemp[26] = K_a_va*xtemp[3]/(K_a_va+S_H_ion); 	// Sva-
+				xtemp[27] = K_a_bu*xtemp[4]/(K_a_bu+S_H_ion);  	// Sbu-
+				xtemp[28] = K_a_pro*xtemp[5]/(K_a_pro+S_H_ion); // Spro-
+				xtemp[29] = K_a_ac*xtemp[6]/(K_a_ac+S_H_ion); 	// Sac-
+				xtemp[30] = K_a_co2*xtemp[9]/(K_a_co2+S_H_ion); // SHCO3-
+				xtemp[31] = K_a_IN*xtemp[10]/(K_a_IN+S_H_ion); 	// SNH3
+				
+				shDelta = xtemp[24]+(xtemp[10]-xtemp[31])+S_H_ion-xtemp[30]
+						-xtemp[29]/64.0-xtemp[28]/112.0-xtemp[27]/160.0
+						-xtemp[26]/208.0-K_w/S_H_ion-xtemp[25];
 				
 				shGradEqu = 1+K_a_IN*xtemp[10]/((K_a_IN+S_H_ion)*(K_a_IN+S_H_ion))
 			            +K_a_co2*xtemp[9]/((K_a_co2+S_H_ion)*(K_a_co2+S_H_ion))          
@@ -431,7 +428,7 @@ public class DAEModel implements FirstOrderDifferentialEquations {
 				procT8 = param[55]*(xtemp[7]-16.0*K_H_h2*p_gas_h2); // kLa*(S_h2-16.0*K_H_h2*p_gas_h2)
 				
 				reac8 = (1.0-param[71])*param[91]*proc5+(1.0-param[79])*param[92]*proc6+(1.0-param[85])*0.3*proc7+(1.0-param[86])*0.15*proc8+(1.0-param[86])*0.2*proc9+(1.0-param[87])*0.43*proc10-proc12-procT8;
-				
+
 				sh2Delta = (xtemp[35]/param[98])*(u[7]-xtemp[7])+reac8;
 			               //-1/V_liq**u[26]
 				sh2GradEqu = -1/param[98]*xtemp[35]

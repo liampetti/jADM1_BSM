@@ -97,7 +97,8 @@ public class Main {
 		}
 	}
 	
-	private void runSteady() {		
+	private void runSteady() {	
+		CSVWriter writer = new CSVWriter();
 		stime = System.currentTimeMillis();
 		events = new ArrayList<DiscreteEvent>();
 		// Setup model outputs and parameters (default is BSM2)
@@ -110,7 +111,7 @@ public class Main {
 		// No command line arguments, run a default setup
 		start = 0.0;
 		finish = 200.0;
-		modOut = true;
+		modOut = false;
 		step = 0.1;	
 		dae = true;
 		
@@ -119,6 +120,10 @@ public class Main {
 		model = new Model(start, finish, parameters, initial, influent, modOut);	
 		model.setDAE(dae);		
 		model.addEvents(events);
+		
+		if (modOut) {
+			writer.Clear("cont_model_output.csv");
+		}
 		
 		new Thread(model).start();
 		
@@ -146,17 +151,18 @@ public class Main {
 					";\t Effluent; " + x[i] + "\n";
 	 	}
 		System.out.println(output);
-		CSVWriter writer = new CSVWriter();
-		writer.WriteString("steady_result.csv", output);
+		writer.WriteString("steady_result.csv", output, true);
 	}
 	
 	private void runDynamic() {
 		double stime = System.currentTimeMillis();
 		CSVWriter writer = new CSVWriter();
+		writer.Clear("dynamic_output.csv");
 		events = new ArrayList<DiscreteEvent>();
 		// Setup model outputs and parameters (default is BSM2)
+		BSM2Defaults defaults = new BSM2Defaults();
 		initial = new StateVariables();
-		initial.readVar("dynamic_init.csv");
+		initial.setVar(defaults.DigesterInit());
 		influent = new StateVariables();
 		dynamicIn = new CSVReader("digesterin.csv", ",");
 		parameters = new DigesterParameters();
@@ -189,7 +195,15 @@ public class Main {
 			
 			model.setTime(start, start+step);
 			model.run();
-			writer.WriteArray("dynamic_output.csv", model.getX());
+			
+			// Add time to the beginning of the array and save to csv
+			double[] timemodel = new double[model.getX().length+1];
+			timemodel[0] = start;
+			for (int i=1;i<timemodel.length;i++) {
+				timemodel[i] = model.getX()[i-1];
+			}
+			writer.WriteArray("dynamic_output.csv", timemodel, true);
+			
 			start = start+step;
 			if (t%(Math.round(finish/100)) == 0) {
 				System.out.println("Progress = " + String.format("%.2f",(start/finish)*100) + "%");
