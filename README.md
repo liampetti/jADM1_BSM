@@ -1,4 +1,4 @@
-#jADM1
+# jADM1
 A Java implementation of the Anaerobic Digestion Model No 1 (ADM1).
 
 Based on the Matlab code produced for the Benchmark Simulation Model No 2 (BSM2) produced by the International Water Association (IWA) Task Group on Benchmarking of Control Strategies for Wastewater Treatment Plants. The original ADM1 was developed by the IWA Task Group for Mathematical Modelling of Anaerobic Digestion Processes.
@@ -16,7 +16,7 @@ Usage of this model can be found in the following conference papers:
 * Pettigrew, L., Delgado, A. (2016). Neural Network Based Reinforcement Learning Control for Increased Methane Production in an Anaerobic Digestion System. In 3rd IWA Specialized International Conference „Ecotechnologies for Wastewater Treatment“ (ecoSTP16). Cambridge, UK.
 
 
-#Interface and Usage
+# Interface and Usage
 A command line interface can be used to run simulations with the following command line arguments:
 
 * -steady		  
@@ -138,11 +138,11 @@ CSV files contain the variable values in a ';' separated string. The influent fi
 >41) ammonium (kmole N/m3)
 
 
-#Dependencies
+# Dependencies
 * Requires the Apache Commons Mathematics Library 3.5
 
 
-#Credits
+# Credits
 
 Special thanks to Ulf Jeppsson, Christian Rosen and Darko Vrecko for use of their Matlab code of the ADM1, developed when (around 2004) they were all working together at the Department of Industrial Electrical Engineering and Automation (IEA), Lund University, Sweden.
 
@@ -153,7 +153,7 @@ Referenced works:
 * Gernaey, K.V., Jeppsson, U., Vanrolleghem, P.A. & Copp, J.B. (2014). Benchmarking of Control Strategies for Wastewater Treatment Plants. IWA Scientific and Technical Report No. 23, IWA Publishing, London, UK.
 
 
-#License
+# License
 >Copyright 2016 Liam Pettigrew
 >
 > Licensed under the Apache License, Version 2.0 (the "License");
