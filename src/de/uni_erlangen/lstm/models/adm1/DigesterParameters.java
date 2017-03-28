@@ -173,7 +173,7 @@ public class DigesterParameters {
 	 */
 	public void readParameters(String filename) {
 		CSVReader reader = new CSVReader(filename, ";");
-		String[] param = reader.getStrings();
+		String[] param = reader.getLastStrings();
 		double[] p = new double[param.length];
 		for (int i=0;i<p.length;i++) {
 			p[i] = Double.parseDouble(param[i]);

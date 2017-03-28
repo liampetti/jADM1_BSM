@@ -111,13 +111,13 @@ public class Main {
 		// No command line arguments, run a default setup
 		start = 0.0;
 		finish = 200.0;
+		step = 0.01041666667; // 15 minutes in days as standard resolution
 		modOut = false;
-		step = 0.1;	
 		dae = true;
 		
 		checkArgs();
 
-		model = new Model(start, finish, parameters, initial, influent, modOut);	
+		model = new Model(start, finish, step, parameters, initial, influent, modOut, "steady_out.csv");	
 		model.setDAE(dae);		
 		model.addEvents(events);
 		
@@ -176,14 +176,14 @@ public class Main {
 		
 		checkArgs();
 
-		model = new Model(start, start+step, parameters, initial, influent, modOut);
+		model = new Model(start, start+step, step, parameters, initial, influent, modOut, "dynamic_out.csv");
 		model.setDAE(dae);
 		model.addEvents(events);
 		
 		int t = 0;
 		
 		while (!dynamicIn.finished()) {
-			String[] inString = dynamicIn.getStrings();		
+			String[] inString = dynamicIn.getNextString();		
 			if (inString.length > 0) {
 				double[] in = new double[inString.length];
 				for (int i=0;i<in.length;i++) {

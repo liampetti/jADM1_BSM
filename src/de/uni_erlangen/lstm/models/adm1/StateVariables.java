@@ -56,7 +56,7 @@ public class StateVariables {
 	 */
 	public void readVar(String filename) {
 		CSVReader reader = new CSVReader(filename, ";");
-		String[] outputs = reader.getStrings();
+		String[] outputs = reader.getNextString();
 		double[] x = new double[outputs.length];
 		for (int i=0;i<x.length;i++) {
 			x[i] = Double.parseDouble(outputs[i]);
